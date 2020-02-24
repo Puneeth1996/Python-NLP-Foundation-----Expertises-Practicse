@@ -1,25 +1,30 @@
 """Count words."""
+import re
+
 
 def count_words(text):
     """Count how many times each unique word occurs in text."""
     counts = dict()  # dictionary of { <word>: <count> } pairs to return
     
     # TODO: Convert to lowercase
-    text1 = text.lower().split()
+    text123 = text.lower()
     
     # TODO: Split text into tokens (words), leaving out punctuation
     # (Hint: Use regex to split on non-alphanumeric characters)
-    # punctuation marks
-    punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
-    for x in text1:
-        if x in punctuations:
-            string = string.replace(x, "") 
-        counts[x] = x.count(x)
+    text123 = re.sub('[!#?,.:";]', '', text123)
+    words = text123.split()
+    print(words)
     
-    print(counts)
     # TODO: Aggregate word counts using a dictionary
+
+    for word in words:
+        if word in counts:
+            counts[word] += 1
+        else:
+            counts[word] = 1
     
     return counts
+
 
 
 def test_run():
